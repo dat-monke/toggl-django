@@ -1,0 +1,55 @@
+Helpful Links
+>> https://realpython.com/get-started-with-django-1/#showcase-your-projects
+>> https://realpython.com/django-hosting-on-heroku/#step-1-scaffold-a-django-project-for-hosting
+
+
+Initial Setup: 
+>> Create a folder for the project 
+>> Initialize a virtual environment 
+>>>> python3 -m venv venv 
+>>>> To activate the virtual environment: source venv/bin/activate OR source bin/activate 
+>> Now you can install Django 
+>>>> pip install Django --> Make sure that the virtual environment is set up already [ (.venv) PS C:\Users\...\ ]
+
+Django Initialization: 
+>> Start the admin structure for the application 
+>>>> django-admin startproject <project_name_here>
+>> [OPTIONAL] Clean up the tree 
+>>>> mv <project_name_here>/manage.py ./ 
+>>>> mv <project_name_here>/<project_name_here>/* <project_name_here>
+>>>> rm -r <project_name_here>/<project_name_here> 
+>> Test the initial setup 
+>>>> python3 manage.py runserver 
+
+Django Application Creation: 
+>> To start the app (apps are the different pages for the website/application)
+>>>> python3 manage.py startapp <app_name_here> 
+>> Add the app to the project 
+>>>> Go to settings.py -> INSTALLED_APPS -> Add <app_name_here> to the list 
+
+Creating example view: 
+>> Go to the views.py file and add your functions 
+>>>> Example: def hello_world(request): 
+>>>>            return render(request, 'hello_world.html', {})
+>> Now create the html document 
+>>>> mkdir <app_name_here>/templates/ 
+>>>> mkdir <app_name_here>/templates/hello_world.html
+>> Within the HTML file, include the sample code (this is an example)
+>>>> <h1>Hello, World!</h1> 
+>> Go to urls.py file and hook the url together 
+>>>> from django.contrib import admin
+>>>> from django.urls import path, include
+>>>> 
+>>>> urlpatterns = [
+>>>>     path('admin/', admin.site.urls),
+>>>>     path('', include('hello_world.urls')),
+>>>> ]
+>> Create the hello_world.urls module 
+>>>> from django.urls import path
+>>>> from hello_world import views
+>>>> 
+>>>> urlpatterns = [
+>>>>     path('', views.hello_world, name='hello_world'),
+>>>> ]
+>> Run the server to test if everything works 
+>>>> python3 manage.py runserver 
